@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Simulador de Exámenes</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div style="text-align: right; margin-bottom: 10px;">
+        <label for="modoOscuro">Modo Oscuro:</label>
+        <input type="checkbox" id="modoOscuro">
+    </div>
+
+    <h1>Banco de Exámenes</h1>
+    <div>
+        <label for="tiempoExamen">Tiempo del Examen (minutos):</label>
+        <input type="number" id="tiempoExamen" min="1" value="30">
+        <button id="iniciarTemporizador">Iniciar Temporizador</button>
+        <button id="detenerTemporizador">Detener Temporizador</button>
+        <div id="temporizador" style="font-size: 1.5em; margin-top: 10px;"></div>
+    </div>
+
+    <label for="curso">Curso:</label>
+    <select id="curso">
+        <option value="amga">Álgebra Matricial y Geometría Analítica</option>
+        <option value="fucal">Fundamentos de Cálculo</option>
+        <option value="fufi">Fundamentos de Física</option>
+        <option value="quimica">Química General</option>
+    </select>
+
+    <label for="tipo">Tipo:</label>
+    <select id="tipo">
+        <option value="pc">Práctica Calificada</option>
+        <option value="pd">Práctica Dirigida</option>
+        <option value="ex">Examen Parcial</option>
+    </select>
+
+    <label for="nivel">Nivel:</label>
+    <select id="nivel">
+        <option value="">-- Seleccione un nivel --</option>
+    </select>
+
+    <div style="margin-top: 20px;">
+        <button id="nuevoExamen">Generar Otro Examen</button>
+        <button id="examenAnterior" disabled>Volver al Anterior</button>
+        <label for="zoom" style="margin-left: 20px;">Tamaño:</label>
+        <select id="zoom">
+            <option value="ancho">100%</option>
+            <option value="0.9">90%</option>
+            <option value="0.8">80%</option>
+            <option value="0.7">70%</option>
+            <option value="0.6">60%</option>
+            <option value="0.5">50%</option>
+        </select>
+    </div>
+
+    <div id="examenes" style="margin-top: 20px;"></div>
+
+    <audio id="alarmaSonido" src="classic_alarm.mp3"></audio>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (window.pdfjsLib) {
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js`;
+                console.log("PDF.js configurado.");
+            } else {
+                console.error("Error: PDF.js no se cargó correctamente.");
+            }
+        });
+    </script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

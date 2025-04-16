@@ -1,0 +1,260 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8ebed;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el cambio de modo */
+}
+
+body.modo-oscuro {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+body.modo-oscuro h1 {
+    color: #f0f0f0;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+body.modo-oscuro label {
+    color: #c8c8c8;
+}
+
+select {
+    margin-right: 20px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+}
+
+body.modo-oscuro select {
+    border: 1px solid #555;
+    background-color: #333;
+    color: #eee;
+}
+
+button {
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #D3E3FD;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1F3760;
+}
+
+body.modo-oscuro button {
+    background-color: #1F3760;
+    color: #D3E3FD;
+}
+
+body.modo-oscuro button:hover {
+    background-color: #1F3760;
+}
+
+#examenes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+#examenes canvas {
+    margin-bottom: 20px;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    background-color: #fff; /* Fondo blanco para las páginas en modo claro */
+}
+
+body.modo-oscuro #examenes canvas {
+    background-color: #2c2c2c; /* Fondo oscuro para las páginas en modo oscuro */
+    box-shadow: 0px 0px 10px rgba(255,255,255,0.1);
+}
+
+#temporizador {
+    font-weight: bold; /* Ejemplo: texto en negrita */
+    color: #555; /* Ejemplo: color de texto gris oscuro */
+    /* Puedes agregar más estilos como tamaño de fuente, margen, etc. */
+}
+
+body.modo-oscuro #temporizador {
+    color: #f0f0f0; /* Color de texto claro en modo oscuro */
+}
+
+#tiempoExamen {
+    /* Otros estilos... */
+    background-color: #fff; /* Este es el fondo del cuadro */
+    border: none;
+    outline: none;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    /* Otros estilos... */
+}
+
+body.modo-oscuro #tiempoExamen {
+    /* Otros estilos... */
+    color: #fff;
+    background-color: #333; /* Este es el fondo del cuadro en modo oscuro */
+    /* Otros estilos... */
+}
+
+/* Estilos para el checkbox por defecto (PC y móvil) */
+input[type="checkbox"] {
+    appearance: none; /* Elimina la apariencia nativa del checkbox */
+    -webkit-appearance: none; /* Para navegadores basados en WebKit */
+    width: 20px; /* Ancho deseado */
+    height: 20px; /* Alto deseado */
+    border: 2px solid #ccc; /* Borde */
+    border-radius: 4px; /* Opcional: esquinas redondeadas */
+    background-color: #fff; /* Fondo */
+    cursor: pointer;
+    display: inline-block; /* Para que se comporte como un elemento en línea */
+    vertical-align: middle; /* Alineación vertical con el texto */
+    margin-right: 5px; /* Espacio a la derecha del checkbox */
+    position: relative; /* Para poder posicionar el checkmark */
+}
+
+input[type="checkbox"]:checked {
+    background-color: #007bff; /* Fondo cuando está marcado */
+    border-color: #007bff; /* Borde cuando está marcado */
+}
+
+input[type="checkbox"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; /* Tamaño del checkmark */
+    height: 8px; /* Tamaño del checkmark */
+    background-color: #fff; /* Color del checkmark */
+    border-radius: 2px; /* Opcional: forma del checkmark */
+}
+
+/* Estilos específicos para modo oscuro (opcional) */
+body.modo-oscuro input[type="checkbox"] {
+    border-color: #555;
+    background-color: #333;
+}
+
+body.modo-oscuro input[type="checkbox"]:checked {
+    background-color: #3a86ff;
+    border-color: #3a86ff;
+}
+
+body.modo-oscuro input[type="checkbox"]:checked::before {
+    background-color: #fff;
+}
+
+/* Estilos para pantallas más pequeñas (móviles) - Opcional: hacer aún más grande */
+@media (max-width: 600px) {
+    input[type="checkbox"] {
+        width: 24px; /* Aumentar el tamaño en móviles */
+        height: 24px;
+        border-width: 3px; /* Borde más grueso en móviles */
+    }
+
+    input[type="checkbox"]:checked::before {
+        width: 10px;
+        height: 10px;
+        border-radius: 3px;
+    }
+}
+
+/* Estilos para pantallas de 600px de ancho o menos (teléfonos) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Reducir el padding general */
+    }
+
+    h1 {
+        font-size: 2em; /* Reducir el tamaño del título */
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block; /* Hacer que las etiquetas ocupen una línea completa */
+        margin-bottom: 5px;
+        margin-right: 0;
+    }
+
+    select {
+        margin-right: 0; /* Eliminar margen derecho */
+        width: 50%; /* Ocupar todo el ancho */
+        margin-bottom: 10px; /* Espacio inferior */
+        padding: 10px; /* Aumentar padding para mejor interacción táctil */
+    }
+
+    button {
+        width: 50%; /* Ocupar todo el ancho */
+        margin-right: 0;
+        margin-bottom: 10px;
+        padding: 10px 20px; /* Aumentar padding para mejor interacción táctil */
+    }
+
+    #examenes {
+        /* La disposición vertical y centrado ya están, así que no es necesario cambiar mucho aquí */
+        margin-top: 10px; /* Reducir un poco el margen superior */
+    }
+
+    #examenes canvas {
+        margin-bottom: 15px; /* Reducir un poco el margen inferior entre páginas */
+    }
+
+    #temporizador {
+        font-size: 1.5em; /* Ajustar el tamaño del temporizador */
+        text-align: left; /* Centrar el temporizador */
+        margin-top: 10px; /* Reducir un poco el margen superior */
+    }
+
+    #tiempoExamen {
+        width: 10%;
+        padding: 10px;
+        text-align: center;
+        display: block;
+        margin: 0 auto 10px auto; /* Centrar y añadir margen inferior */
+        margin-left: 0; /* Alinea el botón a la izquierda */
+    }
+
+    button#iniciarTemporizador {
+        width: 40%; /* Ocupar todo el ancho */
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        display: block;
+        margin-left: 0; /* Alinea el botón a la izquierda */
+        margin-right: auto; /* Permite que ocupe el ancho restante */
+        text-align: left; /* Alinea el texto dentro del botón a la izquierda (opcional) */
+    }
+
+    button#detenerTemporizador {
+        width: 40%;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        display: block;
+        margin-left: 0; /* Alinea el botón a la izquierda */
+        margin-right: auto; /* Permite que ocupe el ancho restante */
+        text-align: left; /* Alinea el texto dentro del botón a la izquierda (opcional) */
+    }
+}
+
+/* Puedes agregar más ajustes específicos para teléfonos aquí */

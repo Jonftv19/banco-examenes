@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de Examenes</title>
+    <style>
+        body { margin: 0; }
+        iframe { border: none; }
+    </style>
+</head>
+<body>
+    <iframe src="..." style="width: 100%; height: 95vh; border: none; margin-bottom: 40px;"></iframe>
+
+    <script>
+        const iframeVisor = document.getElementById('visorPDF');
+        const urlParams = new URLSearchParams(window.location.search);
+        const pdfURL = urlParams.get('pdf');
+
+        if (pdfURL) {
+            iframeVisor.src = pdfURL + '#toolbar=0&navpanes=0&scrollbar=0';
+        } else {
+            // Puedes mostrar un mensaje de error si no se proporciona la URL
+            iframeVisor.src = 'about:blank';
+            console.error('No se proporcionó la URL del PDF.');
+        }
+    </script>
+</body>
+</html>
