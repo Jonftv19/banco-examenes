@@ -45,38 +45,45 @@ function cargarNiveles() {
 }
 
 function mostrarPDFIntegrado(pdfURL, escala = 'ancho') {
-  contenedorExamenes.innerHTML = "";
+    contenedorExamenes.innerHTML = "";
 
-  pdfjsLib.getDocument(pdfURL).promise
-      .then(pdf => {
-          for (let i = 1; i <= pdf.numPages; i++) {
-              pdf.getPage(i).then(page => {
-                  const canvas = document.createElement('canvas');
-                  const context = canvas.getContext('2d');
-                  let viewport = page.getViewport({ scale: 1 });
+    pdfjsLib.getDocument(pdfURL).promise
+        .then(pdf => {
+            for (let i = 1; i <= pdf.numPages; i++) {
+                pdf.getPage(i).then(page => {
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    let viewport = page.getViewport({ scale: 1 });
+                    let escalaFinal = 1; // Variable para la escala final
 
-                  if (escala === 'ancho') {
-                      const anchoContenedor = contenedorExamenes.offsetWidth;
-                      const escalaAncho = anchoContenedor / viewport.width;
-                      viewport = page.getViewport({ scale: escalaAncho });
-                  } else {
-                      viewport = page.getViewport({ scale: parseFloat(escala) });
-                  }
+                    if (escala === 'ancho') {
+                        const anchoContenedor = contenedorExamenes.offsetWidth;
+                        const escalaAncho = anchoContenedor / viewport.width;
+                        escalaFinal = escalaAncho;
 
-                  canvas.height = viewport.height;
-                  canvas.width = viewport.width;
-                  canvas.style.marginBottom = '20px';
+                        // Ajuste para dispositivos móviles: aplicar una escala mínima mayor
+                        if (window.innerWidth < 768) { // Considera anchos menores a 768px como móviles
+                            escalaFinal = Math.max(escalaFinal, 1.5); // Ajusta este valor según necesites
+                        }
+                    } else {
+                        escalaFinal = parseFloat(escala);
+                    }
 
-                  contenedorExamenes.appendChild(canvas);
+                    viewport = page.getViewport({ scale: escalaFinal });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    canvas.style.marginBottom = '20px';
 
-                  page.render({ canvasContext: context, viewport: viewport });
-              });
-          }
-      })
-      .catch(error => {
-          console.error("Error al cargar el PDF:", error);
-          contenedorExamenes.innerHTML = `<p>Error al cargar el PDF: ${error}</p>`;
-      });
+                    contenedorExamenes.appendChild(canvas);
+
+                    page.render({ canvasContext: context, viewport: viewport });
+                });
+            }
+        })
+        .catch(error => {
+            console.error("Error al cargar el PDF:", error);
+            contenedorExamenes.innerHTML = `<p>Error al cargar el PDF: ${error}</p>`;
+        });
 }
 
 function cargarExamenAleatorioPorNivel() {
