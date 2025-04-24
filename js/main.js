@@ -54,16 +54,16 @@ function mostrarPDFIntegrado(pdfURL, escala = 'ancho') {
                     const canvas = document.createElement('canvas');
                     const context = canvas.getContext('2d');
                     let viewport = page.getViewport({ scale: 1 });
-                    let escalaFinal = 1; // Variable para la escala final
+                   let escalaFinal = 1;
 
                     if (escala === 'ancho') {
                         const anchoContenedor = contenedorExamenes.offsetWidth;
                         const escalaAncho = anchoContenedor / viewport.width;
                         escalaFinal = escalaAncho;
-
-                        // Ajuste para dispositivos móviles: aplicar una escala mínima mayor
-                        if (window.innerWidth < 768) { // Considera anchos menores a 768px como móviles
-                            escalaFinal = Math.max(escalaFinal, 1.5); // Ajusta este valor según necesites
+                
+                        // Ajuste para dispositivos móviles (considerando devicePixelRatio)
+                        if (window.innerWidth < 768) {
+                            escalaFinal = Math.max(escalaFinal, 1.5 * window.devicePixelRatio);
                         }
                     } else {
                         escalaFinal = parseFloat(escala);
