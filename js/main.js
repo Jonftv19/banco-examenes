@@ -63,7 +63,7 @@ function mostrarPDFIntegrado(pdfURL, escala = 'ancho') {
                 
                         // Ajuste para dispositivos móviles (considerando devicePixelRatio)
                         if (window.innerWidth < 768) {
-                            escalaFinal = Math.max(escalaFinal, 1.5 * window.devicePixelRatio);
+                            escalaFinal = Math.max(escalaFinal, 3 * window.devicePixelRatio);
                         }
                     } else {
                         escalaFinal = parseFloat(escala);
