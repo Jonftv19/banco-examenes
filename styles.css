@@ -39,10 +39,25 @@ select {
     color: #333;
 }
 
+#nivel {
+    max-width: 150px; /* Ajusta este valor según lo necesites  */
+    width: auto;      /* Permite que el ancho se ajuste al contenido, pero no más de max-width */
+    overflow: hidden;  /* Oculta el texto que se desborda  */
+    text-overflow: ellipsis; /* Muestra "..." si el texto se desborda */
+}
+
 body.modo-oscuro select {
     border: 1px solid #555;
     background-color: #333;
     color: #eee;
+}
+
+div[style="margin-top: 20px;"] {
+    margin-top: 20px;
+    display: flex; /* Añadimos flexbox para controlar la distribución */
+    flex-wrap: wrap; /* Permitimos que los elementos se envuelvan a la siguiente línea */
+    align-items: center; /* Alineamos verticalmente los elementos */
+    gap: 10px; /* Añadimos un espacio entre los elementos */
 }
 
 button {
@@ -52,14 +67,31 @@ button {
     border: none;
     border-radius: 5px;
     background-color: #007bff;
-    color: #D3E3FD;
-    transition: background-color 0.3s ease;
+    color: white;
+    margin-bottom: 5px; /* Añadido un pequeño margen inferior para separar los botones */
 }
 
 button:hover {
-    background-color: #1F3760;
+    background-color: #0056b3;
 }
 
+button:disabled {
+    background-color: #ccc;
+    cursor: default;
+}
+
+select {
+    margin-right: 10px; /* Reducido el margen derecho para mejor espaciado */
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+}
+
+button#mostrarExamenManual{
+    margin-top: 10px;
+}
 body.modo-oscuro button {
     background-color: #1F3760;
     color: #D3E3FD;
