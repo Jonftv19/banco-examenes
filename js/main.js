@@ -311,6 +311,3 @@ document.addEventListener('DOMContentLoaded', function() {
     iniciarTemporizadorBtn.addEventListener("click", iniciarTemporizadorExamen);
     detenerTemporizadorBtn.addEventListener("click", detenerTemporizador);
 });
-
-// Cargar los niveles iniciales
-cargarNiveles();
